@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Voter>
+
+<h2>Voters</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Has Voted</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var voter in Model)
+        {
+            <tr>
+                <td>@voter.Name</td>
+                <td>@voter.HasVoted</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<form asp-action="Create">
+    <input type="text" name="Name" placeholder="Voter Name" required />
+    <button type="submit" id="Add">Add Voter</button>
+    @if (TempData["Message"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@TempData["Message"]");
+            };
+        </script>
+    }
+</form>

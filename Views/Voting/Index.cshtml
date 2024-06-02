@@ -1,0 +1,30 @@
+﻿@model VotingViewModel
+
+<h2>Vote</h2>
+
+<form asp-action="Vote">
+    <select name="voterId">
+        @foreach (var voter in Model.Voters)
+        {
+            <option value="@voter.Id">@voter.Name</option>
+        }
+    </select>
+
+    <select name="candidateId">
+        @foreach (var candidate in Model.Candidates)
+        {
+            <option value="@candidate.Id">@candidate.Name</option>
+        }
+    </select>
+
+    <button type="submit">Vote</button>
+    @if (TempData["Message"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@TempData["Message"]");
+            };
+        </script>
+    }
+</form>
+
